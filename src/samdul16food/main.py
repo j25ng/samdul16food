@@ -26,8 +26,6 @@ file_path = f"{home_path}/code/data/food.csv"
 
 if not os.path.exists(file_path):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
-    with open(file_path, 'w') as f:
-        pass
 
 @app.get("/")
 def read_root():
