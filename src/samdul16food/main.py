@@ -8,6 +8,7 @@ app = FastAPI()
 
 origins = [
     "http://127.0.0.1:8899",
+    "https://samdul-16-food.web.app"
 ]
 
 app.add_middleware(
