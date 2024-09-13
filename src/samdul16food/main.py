@@ -3,6 +3,8 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 import pickle
 import time
+import csv
+import os
 
 app = FastAPI()
 
@@ -19,6 +21,14 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+home_path = os.path.expanduser('~')
+file_path = f"{home_path}/code/data/food.csv"
+
+if not os.path.exists(file_path):
+    os.makedirs(os.path.dirname(file_path), exist_ok=True)
+    with open(file_path, 'w') as f:
+        pass
+
 @app.get("/")
 def read_root():
     return {"Hello": "n16"}
@@ -26,5 +36,13 @@ def read_root():
 @app.get("/food")
 def food(name: str):
     # 시간을 구함
+    t = time.strftime('%Y-%m-%d %H:%M:%S')
     # 음식 이름과 시간을 csv로 저장 -> /code/data/food.csv
-    return {"food": name, "time": time.strftime('%Y-%m-%d %H:%M:%S')}
+    fields = ['food', 'time']
+    data = {"food": name, "time": t}
+
+    with open(file_path, 'a', newline='') as f:
+        writer = csv.DictWriter(f, fieldnames=fields)
+        writer.writerow(data)
+
+    return f"{data['food']}, {data['time']}, test" 
