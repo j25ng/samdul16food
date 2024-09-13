@@ -21,8 +21,9 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
-home_path = os.path.expanduser('~')
-file_path = f"{home_path}/code/data/food.csv"
+#home_path = os.path.expanduser('~')
+#file_path = f"{home_path}/code/data/food.csv"
+file_path = "/code/data/food.csv"
 
 if not os.path.exists(file_path):
     os.makedirs(os.path.dirname(file_path), exist_ok=True)
