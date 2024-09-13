@@ -43,4 +43,4 @@ def food(name: str):
         writer = csv.DictWriter(f, fieldnames=fields)
         writer.writerow(data)
 
-    return f"{data['food']}, {data['time']}, test" 
+    return data
