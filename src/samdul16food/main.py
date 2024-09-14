@@ -47,7 +47,7 @@ def food(name: str):
         csv.DictWriter(f, fieldnames=['food', 'time']).writerow(data)
 
     db = pymysql.connect(
-            host = 'foodmairadb',
+            host = '172.17.0.1',
             port = 13306,
             user = 'food',
             passwd = '1234',
